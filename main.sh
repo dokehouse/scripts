@@ -46,6 +46,8 @@ CHOSEN_SCRIPTS=$(echo "$SCRIPTS" | gum choose --no-limit)
 # run each chosen script
 for script in $CHOSEN_SCRIPTS; do
     echo "Running $script..."
+    # ensure output is flushed before running script
+    exec 1>&1
     bash "$TEMP_DIR/$script"
     
     # check if script failed
@@ -55,4 +57,6 @@ for script in $CHOSEN_SCRIPTS; do
     fi
 done
 
+# ensure output is flushed before final message
+exec 1>&1
 gum style --foreground 212 "setup complete! 🎉"
