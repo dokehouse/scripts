@@ -15,7 +15,8 @@ chmod 700 "$SSH_DIR"
 
 # get ssh key from user
 gum style --foreground 212 "enter your ssh public key:"
-SSH_KEY=$(gum input --width 80 --placeholder "ssh-rsa AAAA...")
+# ensure clean input by explicitly reading from /dev/tty
+SSH_KEY=$(gum input --width 80 --placeholder "ssh-rsa AAAA..." < /dev/tty)
 
 # validate key
 if ! validate_ssh_key "$SSH_KEY"; then
