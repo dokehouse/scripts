@@ -1,0 +1,37 @@
+# os files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# logs and temp files
+*.log
+*.tmp
+tmp/
+logs/
+
+# environment and secrets
+.env
+.env.*
+*.pem
+*.key
+id_*
+known_hosts
+authorized_keys
+
+# build/dependency directories
+node_modules/
+dist/
+build/
+
+# backup/temp
+*.bak
+*.backup
+*-backup
+*.old
+*.tmp
+*.temp
+
+# development
+.docs/
+.cache/
+.local/
