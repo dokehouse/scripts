@@ -74,14 +74,14 @@
                     <span class="select-none text-txt/30 mr-3">~</span>
 										<code id="wgetCmd" class="font-mono hidden">
 											<span class="text-sh-cmd">wget</span>
-											<span>https://scripts.doke.house/main.sh</span>
-											<span class="text-sh-pipe">&&</span>
+											<span class="text-sh-param">-qO-</span>
+											<span>scripts.doke.house/main.sh</span>
+											<span class="text-sh-pipe">|</span>
 											<span class="text-sh-cmd">bash</span>
-											<span>main.sh</span>
 									</code>
                     <code id="curlCmd" class="font-mono hidden space-x-1">
                         <span class="text-sh-cmd">curl</span>
-                        <span class="text-sh-param">-sL</span>
+                        <span class="text-sh-param">-fsSL</span>
                         <span>scripts.doke.house/main.sh</span>
                         <span class="text-sh-pipe">|</span>
                         <span class="text-sh-cmd">bash</span>
