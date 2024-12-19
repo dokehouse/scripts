@@ -45,7 +45,14 @@ CHOSEN_SCRIPTS=$(echo "$SCRIPTS" | gum choose --no-limit)
 
 # run each chosen script
 for script in $CHOSEN_SCRIPTS; do
-    gum spin --spinner dot --title "running $script..." -- bash "$TEMP_DIR/$script"
+    echo "Running $script..."
+    bash "$TEMP_DIR/$script"
+    
+    # check if script failed
+    if [ $? -ne 0 ]; then
+        gum style --foreground "#f7768e" "❌ $script failed"
+        exit 1
+    fi
 done
 
 gum style --foreground 212 "setup complete! 🎉"

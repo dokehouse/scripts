@@ -19,7 +19,7 @@ SSH_KEY=$(gum input --width 80 --placeholder "ssh-rsa AAAA...")
 
 # validate key
 if ! validate_ssh_key "$SSH_KEY"; then
-    gum log --level error "invalid ssh public key"
+    gum style --foreground "#f7768e" "❌ invalid ssh public key"
     exit 1
 fi
 
@@ -28,14 +28,17 @@ echo "$SSH_KEY" >> "$SSH_DIR/authorized_keys"
 chmod 600 "$SSH_DIR/authorized_keys"
 
 # download and apply sshd config
-gum spin --spinner dot --title "applying ssh configuration..." -- \
-    curl -sSL "https://scripts.doke.house/config/sshd_config" -o "/etc/ssh/sshd_config"
-
+echo "Downloading SSH configuration..."
+curl -sSL "https://scripts.doke.house/config/sshd_config" -o "/etc/ssh/sshd_config"
 chmod 600 /etc/ssh/sshd_config
 
 # restart ssh service
-gum spin --spinner dot --title "restarting ssh service..." -- \
-    systemctl restart ssh.service
+echo "Restarting SSH service..."
+if command -v systemctl &>/dev/null; then
+    systemctl restart sshd.service || systemctl restart ssh.service
+else
+    service sshd restart || service ssh restart
+fi
 
-gum style --foreground 212 "ssh configuration complete!"
+gum style --foreground 212 "✨ ssh configuration complete!"
 
