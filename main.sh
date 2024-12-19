@@ -9,7 +9,7 @@ fi
 
 # install gum if not present
 install_gum() {
-    gum style --border double --padding "1 2" "installing gum..."
+    echo "installing gum..."
     
     # add charm repository
     mkdir -p /etc/apt/keyrings
@@ -31,7 +31,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/src"
 # get available scripts
 SCRIPTS=$(find "$SCRIPT_DIR" -name "*.sh" -exec basename {} \;)
 
-# show header
+# now we can use gum for the ui
 gum style \
     --foreground 212 --border-foreground 212 --border double \
     --align center --width 50 --margin "1 2" --padding "2 4" \

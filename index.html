@@ -72,20 +72,19 @@
             <div class="px-5 py-4 pb-7 text-left overflow-x-auto flex justify-between items-center">
                 <div class="flex">
                     <span class="select-none text-txt/30 mr-3">~</span>
+										<code id="wgetCmd" class="font-mono hidden">
+											<span class="text-sh-cmd">wget</span>
+											<span>https://scripts.doke.house/main.sh</span>
+											<span class="text-sh-pipe">&&</span>
+											<span class="text-sh-cmd">bash</span>
+											<span>main.sh</span>
+									</code>
                     <code id="curlCmd" class="font-mono hidden space-x-1">
                         <span class="text-sh-cmd">curl</span>
                         <span class="text-sh-param">-sL</span>
                         <span>scripts.doke.house/main.sh</span>
                         <span class="text-sh-pipe">|</span>
                         <span class="text-sh-cmd">bash</span>
-                    </code>
-                    <code id="wgetCmd" class="font-mono hidden">
-                        <span class="text-sh-cmd">wget</span>
-                        <span>https://scripts.doke.house/main.sh</span>
-                        <span class="text-sh-pipe">&&</span>
-                        <span class="text-sh-cmd">sudo</span>
-                        <span class="text-sh-cmd">bash</span>
-                        <span>main.sh</span>
                     </code>
                 </div>
                 <button onclick="copyCommand()" 
@@ -108,10 +107,10 @@
 
     <script>
         function showTab(tab) {
-            document.getElementById('curlCmd').classList.add('hidden');
             document.getElementById('wgetCmd').classList.add('hidden');
+            document.getElementById('curlCmd').classList.add('hidden');
+						document.getElementById('wgetTab').classList.remove('text-accent');
             document.getElementById('curlTab').classList.remove('text-accent');
-            document.getElementById('wgetTab').classList.remove('text-accent');
             
             document.getElementById(`${tab}Cmd`).classList.remove('hidden');
             document.getElementById(`${tab}Tab`).classList.add('text-accent');
