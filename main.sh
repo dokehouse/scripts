@@ -25,11 +25,13 @@ if ! command -v gum &> /dev/null; then
     install_gum
 fi
 
-# script directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/src"
+# create temp directory and download scripts
+TEMP_DIR=$(mktemp -d)
+trap 'rm -rf "$TEMP_DIR"' EXIT
 
-# get available scripts
-SCRIPTS=$(find "$SCRIPT_DIR" -name "*.sh" -exec basename {} \;)
+echo "downloading scripts..."
+curl -sSL "https://scripts.doke.house/src/ssh.sh" -o "$TEMP_DIR/ssh.sh"
+chmod +x "$TEMP_DIR/ssh.sh"
 
 # now we can use gum for the ui
 gum style \
@@ -38,11 +40,12 @@ gum style \
     'dokehouse setup' 'select scripts to run'
 
 # let user choose scripts
+SCRIPTS=$(find "$TEMP_DIR" -name "*.sh" -exec basename {} \;)
 CHOSEN_SCRIPTS=$(echo "$SCRIPTS" | gum choose --no-limit)
 
 # run each chosen script
 for script in $CHOSEN_SCRIPTS; do
-    gum spin --spinner dot --title "running $script..." -- bash "$SCRIPT_DIR/$script"
+    gum spin --spinner dot --title "running $script..." -- bash "$TEMP_DIR/$script"
 done
 
 gum style --foreground 212 "setup complete! 🎉"
