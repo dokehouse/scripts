@@ -41,7 +41,7 @@ gum style \
 
 # let user choose scripts
 SCRIPTS=$(find "$TEMP_DIR" -name "*.sh" -exec basename {} \;)
-CHOSEN_SCRIPTS=$(echo "$SCRIPTS" | gum choose --no-limit)
+CHOSEN_SCRIPTS=$(echo "$SCRIPTS" | gum choose --no-limit --header "select scripts to run")
 
 # run each chosen script
 for script in $CHOSEN_SCRIPTS; do
