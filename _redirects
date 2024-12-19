@@ -1,2 +1,4 @@
-/ /index.html 200
-/* https://raw.githubusercontent.com/fractalcounty/dokehouse/main/:splat 200
+/* /index.html 200
+/main.sh https://raw.githubusercontent.com/fractalcounty/dokehouse/main/main.sh 200
+/src/* https://raw.githubusercontent.com/fractalcounty/dokehouse/main/src/:splat 200
+/config/* https://raw.githubusercontent.com/fractalcounty/dokehouse/main/config/:splat 200
