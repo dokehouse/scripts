@@ -36,8 +36,8 @@ chmod +x "$TEMP_DIR/ssh.sh"
 # now we can use gum for the ui
 gum style \
     --foreground 212 --border-foreground 212 --border double \
-    --align center --width 50 --margin "1 2" --padding "2 4" \
-    'dokehouse setup' 'select scripts to run'
+    --align center --width 50 --margin "1 0" --padding "1 0" \
+    'dokehouse scripts' 'scripts.doke.house'
 
 # let user choose scripts
 SCRIPTS=$(find "$TEMP_DIR" -name "*.sh" -exec basename {} \;)
